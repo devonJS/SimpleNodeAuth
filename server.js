@@ -6,18 +6,20 @@ var express = require('express'),
     path            = require('path'),
     passport        = require('passport'),
     cookieParser    = require('cookie-parser'),
-    session         = require('express-session'),
-    flash           = require('connect-flash');
+    flash           = require('connect-flash'),
+    expressJwt      = require('express-jwt'),
+    jwt             = require('jsonwebtoken');
+
 
 require('./config/passport.js')(passport);
 app = express();
 
+app.use('/api', expressJwt({secret: config.secret}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(session({secret: 'insert-secret-here'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -36,7 +38,9 @@ app.all('*', function(req, res, next) {
 });
 
 //Routing
+app.use('/sessions', require('./routes/sessions'));
 app.use('/users', require('./routes/users'));
+//app.use('/facebook', require('./routes/facebook'));
 
 
 app.use(function(req, res){

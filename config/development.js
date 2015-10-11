@@ -1,5 +1,6 @@
 module.exports = {
   mongo: {
-    uri: 'mongodb://localhost/your-database'
-  }
-}
+    uri: 'mongodb://localhost/coveyPrototype'
+  },
+  'secret': 'INSERT_SECRET_HERE'
+};
