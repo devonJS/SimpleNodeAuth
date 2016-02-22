@@ -1,8 +1,6 @@
 # SimpleNodeAuth
 Simple Node/Express/MongoDB authentication using passport.js
 
-##### Updates added weekly!!!
-
 ##Example usage:
 **POST** request to '/users/signup' with the following req.body:
 'username': "User",
